@@ -4,14 +4,17 @@ import EditStudent from './EditStudent';
 import { SERVER_URL } from '../constants';
 
 const AdminHome = () => {
+
+  useEffect(() => {
+    // called once after intial render
+    fetchStudents();
+    }, [] )
+
   const [message, setMessage] = useState('');
   const [students, setStudents] = useState([]);
 
-  useEffect(() => {
-    fetchStudents();
-  }, []);
-
   const fetchStudents = () => {
+    console.log("fetchStudents");
     fetch(`${SERVER_URL}/student`)
       .then((response) => {
         if (!response.ok) {
@@ -27,7 +30,7 @@ const AdminHome = () => {
         setMessage('Exception. ' + err.message);
       });
   };
-
+  
   const addStudent = (student_name, student_email) => {
     setMessage('');
     fetch(`${SERVER_URL}/student`, {
@@ -110,16 +113,7 @@ const AdminHome = () => {
 
   const headers = ['Student ID', 'Name', 'Email', 'Status Code', 'Status', ' ', ' '];
 
-  if (students.length === 0) {
-    return (
-      <div>
-        <h3>No Enrolled Students</h3>
-        <h4>{message}</h4>
-        <AddStudent addStudent={addStudent} />
-      </div>
-    );
-  } else {
-    return (
+  return (
       <div style={{ margin: 'auto' }}>
         <h3>Student List</h3>
         <div style={{ margin: 'auto' }}>
@@ -138,13 +132,13 @@ const AdminHome = () => {
                   <td>{row.student_id}</td>
                   <td>{row.name}</td>
                   <td>{row.email}</td>
-                  <td>{row.statusCode}</td>
-                  <td>{row.status}</td>
+                  <td id="statCode">{row.statusCode}</td>
+                  <td id="stat">{row.status}</td>
                   <td>
                     <EditStudent student={row} editStudent={editStudent} />
                   </td>
                   <td>
-                    <button type="button" margin="auto" onClick={() => deleteStudent(row.student_id)}>
+                    <button id="Drop" type="button" margin="auto" onClick={() => deleteStudent(row.student_id)}>
                       Delete
                     </button>
                   </td>
@@ -156,7 +150,6 @@ const AdminHome = () => {
         </div>
       </div>
     );
-  }
-};
+}
 
 export default AdminHome;
