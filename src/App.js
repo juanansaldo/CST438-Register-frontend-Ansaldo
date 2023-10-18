@@ -12,7 +12,7 @@ function App() {
           <div>
             <Link to="/">Student</Link>{' '}
             &nbsp;|&nbsp;&nbsp;
-            <Link to="/admin">Admin</Link>{' '}
+            <Link id="Admin" to="/admin">Admin</Link>{' '}
             <Switch>
               <Route exact path="/" component={StudentHome} />
               <Route path="/schedule" component={ShowSchedule} />
