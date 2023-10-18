@@ -53,10 +53,10 @@ const EditStudent = (props) => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update Student</DialogTitle>
         <DialogContent style={{ paddingTop: 20 }}>
-          <TextField id="studentName" autoFocus fullWidth label="Student Name" name="student_name" onChange={handleChange} value={student_name} />
-          <TextField id="studentEmail" autoFocus fullWidth label="Student Email" name="student_email" onChange={handleChange} value={student_email} />
-          <TextField id="statusCode" autoFocus fullWidth label="Status Code" name="statusCode" onChange={handleChange} value={statusCode} />
-          <TextField id="status" autoFocus fullWidth label="Student Status" name="status" onChange={handleChange} value={status} />
+          <TextField id="studentName" autoFocus fullWidth label="Student Name" name="student_name" onChange={handleChange} />
+          <TextField id="studentEmail" autoFocus fullWidth label="Student Email" name="student_email" onChange={handleChange} />
+          <TextField id="statusCode" autoFocus fullWidth label="Status Code" name="statusCode" onChange={handleChange} />
+          <TextField id="status" autoFocus fullWidth label="Student Status" name="status" onChange={handleChange} />
         </DialogContent>
         <DialogActions>
           <Button color="secondary" onClick={handleClose}>Cancel</Button>
@@ -73,4 +73,3 @@ EditStudent.propTypes = {
 };
 
 export default EditStudent;
-
