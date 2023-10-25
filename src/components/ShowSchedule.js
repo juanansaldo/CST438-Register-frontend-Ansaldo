@@ -25,11 +25,14 @@ const ShowSchedule = () => {
     const [courses, setCourses] = useState([]);  // list of courses
     const [message, setMessage] = useState(' ');  // status message
 
+    const token = sessionStorage.getItem("jwt");
+
     useEffect(() => {
         // called once after intial render
         fetchCourses(termId);
         }, [termId]);
 
+        console.log('course list:\n' + courses[0])
 
   /*
    *  GET enrolled courses for given term
@@ -37,7 +40,10 @@ const ShowSchedule = () => {
     const fetchCourses = (termId) => {
         const {year, semester} = SEMESTERS[termId];
         console.log("fetchCourses "+year+" "+semester);
-        fetch(`${SERVER_URL}/schedule?year=${year}&semester=${semester}`)
+        fetch(`${SERVER_URL}/schedule?year=${year}&semester=${semester}`, {
+            headers: {'Authorization' : token}
+        }
+        )
         .then((response) => { return response.json(); } )
         .then((data) => { setCourses(data); })
         .catch((err) =>  { 
@@ -52,8 +58,8 @@ const ShowSchedule = () => {
     const  addCourse = (course_id) => {
         setMessage('');
         console.log("start addCourse"); 
-        fetch(`${SERVER_URL}/schedule/course/${course_id}`,
-        { 
+        fetch(`${SERVER_URL}/schedule/course/${course_id}`, { 
+            headers: {'Authorization' : token},
             method: 'POST', 
         })
         .then(res => {
@@ -81,8 +87,8 @@ const ShowSchedule = () => {
         const enrollment_id = courses[row_id].id;
         
         if (window.confirm('Are you sure you want to drop the course?')) {
-            fetch(`${SERVER_URL}/schedule/${enrollment_id}`,
-            {
+            fetch(`${SERVER_URL}/schedule/${enrollment_id}`, {
+                headers: {'Authorization' : token},
                 method: 'DELETE',
             }
             )

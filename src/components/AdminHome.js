@@ -13,9 +13,13 @@ const AdminHome = () => {
   const [message, setMessage] = useState('');
   const [students, setStudents] = useState([]);
 
+  const token = sessionStorage.getItem("jwt");
+
   const fetchStudents = () => {
     console.log("fetchStudents");
-    fetch(`${SERVER_URL}/student`)
+    fetch(`${SERVER_URL}/student`, {
+      headers: {'Authorization' : token}
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -36,6 +40,7 @@ const AdminHome = () => {
     fetch(`${SERVER_URL}/student`, {
       method: 'POST',
       headers: {
+        'Authorization' : token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: student_name, email: student_email }),
@@ -60,6 +65,7 @@ const AdminHome = () => {
     fetch(`${SERVER_URL}/student/${student_id}`, {
       method: 'PUT',
       headers: {
+        'Authorization' : token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: student_name, email: student_email, statusCode, status }),
@@ -84,6 +90,7 @@ const AdminHome = () => {
 
     const handleDelete = (url) => {
       fetch(url, {
+        headers: {'Authorization' : token},
         method: 'DELETE',
       })
         .then((res) => {
