@@ -1,19 +1,19 @@
 .App {
   text-align: center;
 }
-
+  
 .Center {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
 }
-
+  
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
-
+  
+  
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,17 +24,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+  
 .App-link {
   color: #61dafb;
 }
-
+  
 body {
   box-sizing: border-box;
   color: #220f5f;
   font-family:  sans-serif;
 }
-
+  
 .container {
   width: 100%;
   max-width: 800px;
@@ -42,17 +42,17 @@ body {
   margin: 0 auto;
   margin-top: 70px;
 }
-
+  
 .title {
   text-align: center;
   font-size: 26px;
   margin-bottom: 30px;
 }
-
+  
 table {
   border-collapse: collapse;
 }
-
+  
 tr th {
   font-size: 18px;
   padding: 12px;
@@ -60,13 +60,13 @@ tr th {
   text-align: left;
   background-color: rgba(217, 221, 146, 0.2);
 }
-
+  
 tr td {
   border: 1px solid #eeeeee;
   text-align: left;
   padding:  10px;
 }
-
+  
 input {
   font-size: 16px;
   background-color: transparent;
@@ -75,8 +75,32 @@ input {
   padding: 12px 12px;
   font-family:  sans-serif;
 }
-
+  
 input:focus {
   outline: 1px solid #ccc;
   border: 1px solid #ccc;
+}
+/* Add this to your CSS file or style tag */
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* Distribute items evenly */
+}
+  
+.movie-item {
+  width: 30%; /* Adjust the width as needed */
+  margin: 10px;
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center text within each box */
+}
+  
+.movie-poster img {
+  width: 50%;
+  height: auto;
+}
+  
+.movie-details {
+  padding: 10px;
 }
